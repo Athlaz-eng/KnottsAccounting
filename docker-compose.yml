@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  # Main application
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://knotts_user:knotts_password@db:5432/knotts_accounting
+      - REDIS_URL=redis://redis:6379
+      - DEBUG=true
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+  # PostgreSQL database
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=knotts_accounting
+      - POSTGRES_USER=knotts_user
+      - POSTGRES_PASSWORD=knotts_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+  # Redis for caching and task queue
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+  # Celery worker for background tasks
+  worker:
+    build: .
+    command: celery -A src.core.celery worker --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://knotts_user:knotts_password@db:5432/knotts_accounting
+      - REDIS_URL=redis://redis:6379
+      - DEBUG=true
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+  # Celery beat for scheduled tasks
+  beat:
+    build: .
+    command: celery -A src.core.celery beat --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://knotts_user:knotts_password@db:5432/knotts_accounting
+      - REDIS_URL=redis://redis:6379
+      - DEBUG=true
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+  # Nginx reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - knotts-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  knotts-network:
+    driver: bridge

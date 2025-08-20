@@ -1,0 +1,199 @@
+# Cursor Rules for Knotts Accounting Project
+
+## Project Context
+This is a South African accounting firm automation project. All code should be designed for accounting professionals, with a focus on compliance, accuracy, and efficiency.
+
+## Coding Standards
+
+### Python
+- Use Python 3.8+ features
+- Follow PEP 8 style guidelines strictly
+- Use type hints for all function parameters and return values
+- Implement comprehensive error handling with try-catch blocks
+- Use logging instead of print statements
+- Write docstrings for all functions and classes
+- Use f-strings for string formatting
+
+### JavaScript/TypeScript
+- Use TypeScript for all new JavaScript code
+- Follow ESLint and Prettier configurations
+- Use async/await instead of promises where possible
+- Implement proper error handling
+- Use meaningful variable and function names
+
+### General
+- Write self-documenting code with clear variable names
+- Include comprehensive comments for complex business logic
+- Use constants for magic numbers and strings
+- Implement proper input validation
+- Follow the DRY (Don't Repeat Yourself) principle
+
+## Architecture Guidelines
+
+### File Structure
+- Organize code by feature, not by type
+- Use clear, descriptive file names
+- Keep files under 500 lines when possible
+- Separate business logic from presentation logic
+
+### Database
+- Use parameterized queries to prevent SQL injection
+- Implement proper database migrations
+- Use transactions for data integrity
+- Follow naming conventions for tables and columns
+
+### API Design
+- Use RESTful principles
+- Implement proper HTTP status codes
+- Include comprehensive error responses
+- Use consistent naming conventions for endpoints
+
+## South African Accounting Specifics
+
+### Compliance
+- Follow IFRS and SA GAAP standards
+- Implement proper audit trails
+- Use South African tax calculation methods
+- Include VAT (Value Added Tax) handling
+- Support multiple currencies (ZAR, USD, EUR)
+
+### Business Logic
+- Implement proper financial year handling (March year-end)
+- Support provisional tax calculations
+- Include PAYE (Pay As You Earn) calculations
+- Handle UIF (Unemployment Insurance Fund) contributions
+- Support SDL (Skills Development Levy) calculations
+
+### Data Handling
+- Use proper decimal precision for financial calculations
+- Implement rounding according to South African standards
+- Handle exchange rate conversions
+- Support multiple tax periods
+
+## Security Guidelines
+
+### Authentication & Authorization
+- Implement role-based access control
+- Use secure password hashing (bcrypt)
+- Implement session management
+- Use HTTPS for all communications
+
+### Data Protection
+- Follow POPIA (Protection of Personal Information Act) guidelines
+- Implement data encryption at rest and in transit
+- Use secure API keys and secrets management
+- Implement proper audit logging
+
+## Testing Requirements
+
+### Unit Tests
+- Write tests for all business logic functions
+- Achieve minimum 80% code coverage
+- Use descriptive test names
+- Mock external dependencies
+
+### Integration Tests
+- Test database operations
+- Test API endpoints
+- Test authentication flows
+- Test error scenarios
+
+## Documentation Standards
+
+### Code Documentation
+- Write clear docstrings for all functions
+- Include examples in docstrings
+- Document complex business logic
+- Maintain up-to-date README files
+
+### API Documentation
+- Use OpenAPI/Swagger specifications
+- Include request/response examples
+- Document error codes and messages
+- Provide usage examples
+
+## Performance Guidelines
+
+### Optimization
+- Use efficient algorithms and data structures
+- Implement proper indexing for databases
+- Use caching where appropriate
+- Optimize database queries
+
+### Monitoring
+- Implement proper logging
+- Use performance monitoring tools
+- Track key metrics
+- Set up alerting for critical issues
+
+## AI Integration Guidelines
+
+### Claude Integration
+- Use structured prompts for consistent responses
+- Implement proper error handling for AI calls
+- Cache AI responses when appropriate
+- Validate AI-generated content
+
+### Workflow Automation
+- Design workflows with clear decision points
+- Implement proper error recovery
+- Use event-driven architecture where appropriate
+- Provide manual override capabilities
+
+## Git Workflow
+
+### Branching Strategy
+- Use feature branches for new development
+- Use conventional commit messages
+- Create pull requests for code review
+- Squash commits before merging
+
+### Commit Messages
+- Use conventional commit format
+- Include ticket/issue numbers
+- Write descriptive commit messages
+- Reference related commits when applicable
+
+## Environment Configuration
+
+### Development
+- Use environment variables for configuration
+- Provide example configuration files
+- Use different configurations for different environments
+- Implement proper secrets management
+
+### Deployment
+- Use containerization (Docker)
+- Implement CI/CD pipelines
+- Use infrastructure as code
+- Implement proper backup strategies
+
+## Error Handling
+
+### User Experience
+- Provide clear, actionable error messages
+- Implement proper form validation
+- Use appropriate error codes
+- Provide helpful suggestions for resolution
+
+### System Reliability
+- Implement circuit breakers for external services
+- Use retry mechanisms with exponential backoff
+- Implement proper fallback strategies
+- Monitor and alert on errors
+
+## Accessibility
+
+### Web Applications
+- Follow WCAG 2.1 guidelines
+- Implement proper keyboard navigation
+- Use semantic HTML elements
+- Provide alternative text for images
+
+### Mobile Responsiveness
+- Design for mobile-first approach
+- Test on various screen sizes
+- Ensure touch-friendly interfaces
+- Optimize for mobile performance
+
+Remember: This project serves South African accounting professionals. Always prioritize accuracy, compliance, and user experience in your implementations.
