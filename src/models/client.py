@@ -124,7 +124,10 @@ class Client(Base):
     
     # Relationships
     transactions = relationship("Transaction", back_populates="client", lazy="dynamic")
-    tax_calculations = relationship("TaxCalculation", back_populates="client", lazy="dynamic")
+    ocr_documents = relationship("OCRDocument", back_populates="client", lazy="dynamic")
+    invoices = relationship("Invoice", back_populates="client", lazy="dynamic")
+    user = relationship("User", back_populates="client")
+    # tax_calculations = relationship("TaxCalculation", back_populates="client", lazy="dynamic")  # TODO: Add when TaxCalculation model is created
     
     def __repr__(self) -> str:
         """String representation of the client."""

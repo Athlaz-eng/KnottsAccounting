@@ -132,13 +132,27 @@ async def root() -> Dict[str, str]:
     }
 
 
-# API Routes - These will be imported from route modules
-# from src.api import auth, clients, transactions, tax, reports
-# app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
-# app.include_router(clients.router, prefix="/api/v1/clients", tags=["Clients"])
-# app.include_router(transactions.router, prefix="/api/v1/transactions", tags=["Transactions"])
-# app.include_router(tax.router, prefix="/api/v1/tax", tags=["Tax"])
-# app.include_router(reports.router, prefix="/api/v1/reports", tags=["Reports"])
+# API Routes - Import route modules
+from src.api.v1 import auth, clients, transactions, tax, reports
+# Temporarily disabled - missing imports
+# from src.api.v1 import ocr, client_portal, sage
+from src.api.v2 import chat, documents, settings as v2_settings
+
+# V1 API Routes
+app.include_router(auth.router, tags=["Authentication"])
+app.include_router(clients.router, prefix="/api/v1/clients", tags=["Clients"])
+app.include_router(transactions.router, prefix="/api/v1/transactions", tags=["Transactions"])
+app.include_router(tax.router, prefix="/api/v1/tax", tags=["Tax"])
+app.include_router(reports.router, tags=["Reports"])  # Reports router already has prefix
+# Temporarily disabled - missing modules
+# app.include_router(ocr.router, prefix="/api/v1/ocr", tags=["OCR"])
+# app.include_router(client_portal.router, prefix="/api/v1/portal", tags=["Client Portal"])
+# app.include_router(sage.router, prefix="/api/v1", tags=["Sage Integration"])
+
+# V2 API Routes
+app.include_router(chat.router, prefix="/api/v2/chat", tags=["AI Chat"])
+app.include_router(documents.router, prefix="/api/v2/documents", tags=["Documents"])
+app.include_router(v2_settings.router, prefix="/api/v2/settings", tags=["Settings"])
 
 
 def main():

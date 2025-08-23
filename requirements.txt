@@ -12,11 +12,12 @@ python-multipart==0.0.6
 sqlalchemy==2.0.23
 alembic==1.13.0
 psycopg2-binary==2.9.9
-sqlite3
+# sqlite3 is part of Python standard library
 
 # Authentication and security
 passlib[bcrypt]==1.7.4
 python-jose[cryptography]==3.3.0
+cryptography==41.0.8
 python-multipart==0.0.6
 
 # HTTP client
@@ -29,12 +30,17 @@ numpy==1.25.2
 openpyxl==3.1.2
 xlsxwriter==3.1.9
 
+# Machine Learning libraries
+scikit-learn==1.3.2
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.25.0
+
 # Date and time handling
 python-dateutil==2.8.2
 pytz==2023.3
 
 # Financial calculations
-decimal
+# decimal is built-in Python module
 money==2.0.1
 
 # Logging and monitoring
@@ -87,6 +93,16 @@ cerberus==1.3.5
 
 # Caching
 redis==5.0.1
+
+# WebSocket support for real-time updates
+websockets==12.0
+aiohttp==3.9.1
+
+# Async Redis client
+redis[hiredis]==5.0.1
+
+# Event streaming and workflow management
+kombu==5.3.4
 
 # South African specific
 # Note: These may need to be custom implementations for SA tax calculations

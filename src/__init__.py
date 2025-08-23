@@ -9,10 +9,7 @@ __version__ = "0.1.0"
 __author__ = "Knotts Accounting Team"
 __email__ = "dev@knottsaccounting.co.za"
 
-# Core modules
-from . import core
-from . import models
-from . import services
-from . import utils
+# Avoid eager imports to prevent circular dependencies
+# Modules should be imported explicitly when needed
 
-__all__ = ["core", "models", "services", "utils"]
+__all__ = ["__version__", "__author__", "__email__"]
